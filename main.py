@@ -1,7 +1,11 @@
-from api import create_app
+# app.py
+from flask import Flask
+from api.controllers.chat_controller import chat_bp
 
-app = create_app()
+app = Flask(__name__)
+
+# Register the blueprint under the /chat prefix
+app.register_blueprint(chat_bp, url_prefix="/chat")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
-
+    app.run(debug=True, port=5000)
